@@ -1,0 +1,19 @@
+# Node
+node_modules/
+.DS_Store
+npm-debug.log*
+yarn-error.log
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Env & build
+.env
+.env.*
+dist/
+build/
+coverage/
+
+# Editor
+.vscode/
+.idea/
