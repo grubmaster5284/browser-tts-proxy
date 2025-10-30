@@ -44,11 +44,12 @@ app.post('/tts', async (req, res) => {
     const vertexAI = new VertexAI({ project: PROJECT, location: LOCATION });
     const model = vertexAI.getGenerativeModel({ model: MODEL });
 
-    // Build request: MP3 output; voiceName is optional
+    // Build request: MP3 output; set response voice if provided
     const request = {
       contents: [{ role: 'user', parts: [{ text }]}],
       generationConfig: {
-        audioConfig: { audioEncoding: 'MP3', voiceName: voiceId || undefined }
+        responseMimeType: 'audio/mpeg',
+        responseVoice: voiceId || undefined
       }
     };
 
