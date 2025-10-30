@@ -48,7 +48,7 @@ app.post('/tts', async (req, res) => {
     const request = {
       contents: [{ role: 'user', parts: [{ text }]}],
       generationConfig: {
-        responseMimeType: 'audio/mpeg',
+        responseMimeType: 'audio/wav',
         responseVoice: voiceId || undefined
       }
     };
@@ -61,7 +61,8 @@ app.post('/tts', async (req, res) => {
     }
 
     const buffer = Buffer.from(audioPart.inlineData.data, 'base64');
-    res.setHeader('Content-Type', 'audio/mpeg');
+    const mimeType = audioPart.inlineData.mimeType || 'audio/wav';
+    res.setHeader('Content-Type', mimeType);
     res.setHeader('Cache-Control', 'no-store');
     return res.send(buffer);
   } catch (e) {
